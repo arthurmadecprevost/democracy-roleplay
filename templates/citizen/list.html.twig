@@ -1,0 +1,19 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Citizens!{% endblock %}
+
+{% block body %}
+
+    <ul>
+    {% for citizen in citizens %}
+        <li>
+            <div>
+                <p>{{ citizen.id }} - {{ citizen.name }} {{ citizen.surname }}</p>
+                <p>{{ citizen.phonenumber }}</p>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}
