@@ -6,8 +6,21 @@
         {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
     </head>
         <body>
+        <nav class="shadow-md h-24 flex justify-evenly mb-8">
+            <a href="{{ path('create_citizen') }}" class="bg-slate-50 grid place-items-center">Create Citizen</a>
+            <a href="{{ path('all_citizen') }}" class="bg-slate-50 grid place-items-center">All Citizens</a>
+            <a href="{{ path('app_vehicle_model_index') }}" class="bg-slate-50 grid place-items-center">Vehicle Models</a>
+            <a href="{{ path('app_vehicle_index') }}" class="bg-slate-50 grid place-items-center">Vehicles</a>
+        </nav>
 
-        {% block body %}{% endblock %}
+        <div class="grid place-items-center">
+            <div class="shadow-md bg-white rounded-lg" style="padding: 20px">
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+
+
+
         {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
 
         </body>

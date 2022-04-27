@@ -3,10 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Citizen;
+use App\Form\CitizenType;
 
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CitizenController extends AbstractController
@@ -18,30 +21,8 @@ class CitizenController extends AbstractController
             'controller_name' => 'CitizenController',
         ]);
     }
-
-    /**
-     * @Route("/create_citizen", name="create_citizen")
-     */
-    public function createCitizen(ManagerRegistry $doctrine): Response
-    {
-        $entityManager = $doctrine->getManager();
-
-        $citizen = new Citizen();
-        $citizen->setName('Gau');
-        $citizen->setSurname('Frette');
-        $citizen->setPhoneNumber('333-4513');
-
-        // tell Doctrine you want to (eventually) save the Product (no queries yet)
-        $entityManager->persist($citizen);
-
-        // actually executes the queries (i.e. the INSERT query)
-        $entityManager->flush();
-
-        return new Response('Saved new Citizen with id '.$citizen->getId());
-    }
-
-    /**
-     * @Route("/citizen/{id}", name="citizen_show")
+     /**
+     * @Route("/citizen/show/{id}", name="citizen_show")
      */
     public function show(ManagerRegistry $doctrine, int $id): Response
     {
@@ -53,16 +34,14 @@ class CitizenController extends AbstractController
             );
         }
 
-        return new Response('Name: '.$citizen->getName().' Surname: '.$citizen->getSurname());
+        // return new Response('Name: '.$citizen->getName().' Surname: '.$citizen->getSurname());
 
         // or render a template
-        // in the template, print things with {{ product.name }}
-        // return $this->render('product/show.html.twig', ['product' => $product]);
+        // in the template, print things with {{ citizen.name }}
+        return $this->render('citizen/citizen.html.twig', ['citizen' => $citizen]);
     }
 
-    /**
-     * @Route("/allcitizen", name="homepage")
-     */
+    #[Route('/citizen/showAll', name: 'all_citizen')]
     public function showAll(ManagerRegistry $doctrine): Response
     {
         $citizens = $doctrine->getRepository(Citizen::class)->findAll();
@@ -74,6 +53,31 @@ class CitizenController extends AbstractController
         return $this->render('citizen/list.html.twig', [
             'controller_name' => 'CitizenController',
             'citizens' => $citizens,
+        ]);
+    }
+
+    #[Route('/citizen/register', name: 'create_citizen')]
+    public function create(Request $request, EntityManagerInterface $em) : Response
+    {
+        // creates a task object and initializes some data for this example
+        $citizen = new Citizen();
+
+        $form = $this->createForm(CitizenType::class, $citizen);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $form->getData() holds the submitted values
+            // but, the original `$citizen` variable has also been updated
+            $citizen = $form->getData();
+
+            $em->persist($citizen);
+            $em->flush();
+
+            return $this->redirectToRoute('index');
+        }
+
+        return $this->renderForm('citizen/new.html.twig', [
+            'form' => $form,
         ]);
     }
 }

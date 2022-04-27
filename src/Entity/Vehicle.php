@@ -15,13 +15,13 @@ class Vehicle
 
     #[ORM\ManyToOne(targetEntity: VehicleModel::class, inversedBy: 'vehicles')]
     #[ORM\JoinColumn(nullable: false)]
-    private $Model;
+    private $model;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $Numberplate;
+    private $numberplate;
 
     #[ORM\ManyToOne(targetEntity: Citizen::class, inversedBy: 'vehicles')]
-    private $Owner;
+    private $owner;
 
     public function getId(): ?int
     {
@@ -30,36 +30,36 @@ class Vehicle
 
     public function getModel(): ?VehicleModel
     {
-        return $this->Model;
+        return $this->model;
     }
 
-    public function setModel(?VehicleModel $Model): self
+    public function setModel(?VehicleModel $model): self
     {
-        $this->Model = $Model;
+        $this->model = $model;
 
         return $this;
     }
 
     public function getNumberplate(): ?string
     {
-        return $this->Numberplate;
+        return $this->numberplate;
     }
 
-    public function setNumberplate(string $Numberplate): self
+    public function setNumberplate(string $numberplate): self
     {
-        $this->Numberplate = $Numberplate;
+        $this->numberplate = $numberplate;
 
         return $this;
     }
 
     public function getOwner(): ?Citizen
     {
-        return $this->Owner;
+        return $this->owner;
     }
 
-    public function setOwner(?Citizen $Owner): self
+    public function setOwner(?Citizen $owner): self
     {
-        $this->Owner = $Owner;
+        $this->owner = $owner;
 
         return $this;
     }

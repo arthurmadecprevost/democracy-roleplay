@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Citizen{% endblock %}
+
+{% block body %}
+
+        {{ form_start(form) }}
+
+        <div style="display:flex; gap:10px">
+            {{ form_label(form.name) }} {{ form_widget(form.name, {'attr': {'class': 'mt-1 rounded-md border-solid border-2 border-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'}}) }}
+            {{ form_label(form.surname) }} {{ form_widget(form.surname, {'attr': {'class': 'mt-1 rounded-md border-solid border-2 border-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'}}) }}
+            {{ form_label(form.phone_number) }} {{ form_widget(form.phone_number, {'attr': {'class': 'mt-1 rounded-md border-solid border-2 border-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'}}) }}
+
+
+
+            {{ form_row(form.save, {'attr': {'class': 'text-white bg-cyan-500 hover:bg-cyan-600 rounded shadow-md',
+                'style': 'padding: 5px'},
+                'label': 'Create this Citizen'}) }}
+        </div>
+
+        {{ form_end(form) }}
+
+{% endblock %}

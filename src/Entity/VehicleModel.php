@@ -16,7 +16,7 @@ class VehicleModel
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $Name;
+    private $name;
 
     #[ORM\OneToMany(mappedBy: 'Model', targetEntity: Vehicle::class)]
     private $vehicles;
@@ -33,12 +33,12 @@ class VehicleModel
 
     public function getName(): ?string
     {
-        return $this->Name;
+        return $this->name;
     }
 
-    public function setName(string $Name): self
+    public function setName(string $name): self
     {
-        $this->Name = $Name;
+        $this->name = $name;
 
         return $this;
     }

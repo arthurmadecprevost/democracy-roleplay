@@ -4,16 +4,24 @@
 {% block title %}Citizens!{% endblock %}
 
 {% block body %}
-
-    <ul>
-    {% for citizen in citizens %}
-        <li>
-            <div>
-                <p>{{ citizen.id }} - {{ citizen.name }} {{ citizen.surname }}</p>
-                <p>{{ citizen.phonenumber }}</p>
-            </div>
-        </li>
-    {% endfor %}
-    </ul>
-
+        <table class="table-auto">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Phone Number</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for citizen in citizens %}
+                <tr>
+                    <td>{{ citizen.id }}</td>
+                    <td>{{ citizen.name }}</td>
+                    <td>{{ citizen.surname }}</td>
+                    <td>{{ citizen.phonenumber }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 {% endblock %}
