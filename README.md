@@ -1,33 +1,17 @@
-# LSPD (Los Santos Police Department)
+# Democracy Roleplay
 
-Utilisateurs (Policiers), avec accès à certaines fonctionnalités en fonction de leur grade (cadet, officiers, officiers supérieurs, sergents, sergents-chefs/inspecteurs, lieutenants, capitaine, commissaire).
+## Configuration :
 
-## Citoyen:
+- Clone the repo.
+- Make sure yarn is installed (```npm i -g yarn```)
+- ```composer install```
+- ```npm install```
+- Configure .env
 
-- Nom
-- Prénom
-- Numéro de téléphone
+To initialize a database : 
 
-## Véhicule:
+```php bin/console doctrine:database:create```
 
-- Modèle
-- Plaque d'immatriculation
-- Propriétaire (Citoyen)
+To launch a dev server :
 
-## Infraction
-- Nom
-- Amende
-- Peine de prison
-
-## Plainte:
-
-* Victime
-* Infraction(s)
-* Note
-
-TO-DO:
-- [ ] Fichier de citoyens
-- [ ] Fichier de véhicules
-- [ ] Déclaration de vol de véhicule
-
-
+```php -S localhost:8000 -t public```         
