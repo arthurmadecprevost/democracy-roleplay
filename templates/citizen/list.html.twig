@@ -11,6 +11,7 @@
                 <th>Name</th>
                 <th>Surname</th>
                 <th>Phone Number</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -20,6 +21,7 @@
                     <td>{{ citizen.name }}</td>
                     <td>{{ citizen.surname }}</td>
                     <td>{{ citizen.phonenumber }}</td>
+                    <td><a href="./show/{{ citizen.id }}">Voir la fiche</a></td>
                 </tr>
             {% endfor %}
             </tbody>

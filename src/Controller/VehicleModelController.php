@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\VehicleModel;
-use App\Form\VehicleModel1Type;
+use App\Form\VehicleModelType;
 use App\Repository\VehicleModelRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +25,7 @@ class VehicleModelController extends AbstractController
     public function new(Request $request, VehicleModelRepository $vehicleModelRepository): Response
     {
         $vehicleModel = new VehicleModel();
-        $form = $this->createForm(VehicleModel1Type::class, $vehicleModel);
+        $form = $this->createForm(VehicleModelType::class, $vehicleModel);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
